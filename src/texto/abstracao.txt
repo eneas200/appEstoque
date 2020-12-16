@@ -1,0 +1,128 @@
+sistema de controller de estoque
+
+proposta
+desenvolver um app para estoque, que possibilite
+cadastrar produto verificar quais produtos ja estão cadastrados
+sendo possivel ter um login para o funcionario que ficara responsavel pelo gerenciamento do produtos
+poder tabem armazenar informações dos fornecedores dos produtos caso queira fazer
+solicitação de uma nova remeça 
+historico das tarefas do funcionario
+
+
+
+conterá os serviços
+cadastrar, altera, visualizar dados do funcinário
+cadastrar produto
+login
+
+ver fornecedores e cadastrar
+
+página ver produto será exibido informações referente ao funcionario
+ou seja ações que o mesmo executor como da baixa no produto
+
+
+banco de dados
+tabela produto
+    id_produto: int
+    nome_produto: varchar, 
+    preco_produto: decimal, 
+    quantidade_produto: int, 
+    codigo_produto: varchar,
+    fk_fornecedor: varchar
+
+tabela fornecedor
+    id_fornecedor: int, 
+    nome_empresa_fornecedor: varchar, 
+    nome_intermediador: varchar, 
+    email_fornecedor: varchar, 
+    urlsite_fornecedor: varchar
+
+
+tabela funcionario
+id_funcionario: int, 
+nome_funcionario: varchar, 
+email_funcionario: varchar, 
+senha_funcionario:  varchar
+
+
+tabela produto_baixa
+    id_produto_baixa: int, 
+    quantidade_baixa: int, 
+    codigo_produto: int, 
+    data_baixa: datetime
+    fk_funcionario: int
+
+tablea: produto_tem_fornecedor
+    primary_produto: int
+    primary_fornecedor: int
+
+item no menu
+ver produto[home]
+    - cadastrar novos produtos
+    - alterar dados dos produtos
+    - remover produtos
+    - buscar produtos
+
+ 
+
+interface produto
+- cadastrarProduto()
+- alterarProduto()
+- buscarProduto()
+
+interface produtoBaixa
+- cadastrarProdutoBaixa()
+- alterarProdutoBaixa()
+- buscarProdutoBaixa()
+
+
+interface fornecedor
+- cadastrarFornecedor()
+- alterarFornecedor()
+- buscarFornecedor ()
+
+interface funcionario
+- cadastrarFuncionario()
+- alterarFuncionario()
+- buscarFuncionario()
+
+interface produto_tem_fornecedor
+- inserirRelacionamento()
+- buscarRelacionamento()
+- verificarRelacionamento()
+
+inerface login
+- realizarLogin()
+
+interfaces:
+IFornecedorService
+IFuncionarioService
+ILoginService
+IProdutoBaixaService
+IProdutoService
+IProdutoTemFornecedorService
+
+serviços:
+FornecedorService
+FuncionarioService
+LoginService
+ProdutoBaixaService
+ProdutoService
+ProdutoTemFornecedorService
+
+
+
+
+
+
+fluxo das paginas
+cadastrar funcionario
+    ações:
+        
+        cadastrar novos produtos
+        cadastrar os fornecedores
+        ver os produtos cadastrados
+    
+
+
+

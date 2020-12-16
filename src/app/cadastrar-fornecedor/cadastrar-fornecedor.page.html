@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Cadastrar Fornecedor</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <!-- nome_empresa_fornecedor -->
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">Nome Empresa</ion-label>
+                    <ion-input type="text" placeholder="Empresa" [(ngModel)]="fornecedor.nome_empresa_fornecedor"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <!-- nome_intermediador -->
+        <ion-row>
+            <ion-col>
+                <!-- <ion-item>
+                    <ion-label position="floating">Representante Empresa</ion-label>
+                    <ion-input placeholder="nome do representante" type="text" [(ngModel)]="fornecedor.nome_intermediador"></ion-input>
+                </ion-item> -->
+                <ion-item>
+                    <ion-label position="floating">Representante Empresa</ion-label>
+                    <ion-input [(ngModel)]="fornecedor.nome_intermediador" type="text" placeholder="nome do representante"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <!-- email_fornecedor -->
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">E-mail</ion-label>
+                    <ion-input placeholder="Endereco de email" type="email" [(ngModel)]="fornecedor.email_fornecedor"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <!-- urlsite_fornecedor -->
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">Url do Site</ion-label>
+                    <ion-input type="text" placeholder="Site fornecedor" [(ngModel)]="fornecedor.urlsite_fornecedor"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-button (click)="salvarFornecedor();" expand="full">
+            CADASTRAR FORNECEDOR
+        </ion-button>
+
+    </ion-grid>
+
+</ion-content>

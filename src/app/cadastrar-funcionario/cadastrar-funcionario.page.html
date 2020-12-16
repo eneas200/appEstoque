@@ -1,9 +1,53 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>cadastrar-funcionario</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Cadastrar Funcionário</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid>
 
+        <ion-row>
+            <!-- nome -->
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">Nome</ion-label>
+                    <ion-input [(ngModel)]="funcionario.nome_funcionario" type="text" placeholder="entre com seu nome"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <!-- email -->
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">Endereco de email</ion-label>
+                    <ion-input [(ngModel)]="funcionario.email_funcionario" type="email" placeholder="entre com seu meail"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <!-- senha -->
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">Senha</ion-label>
+                    <ion-input [(ngModel)]="funcionario.senha_funcionario" type="password" placeholder="informe a senha"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <!-- confirmar senha -->
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">Repita-a Senha</ion-label>
+                    <ion-input [(ngModel)]="funcionario.confirmarSenha_funcionario" type="password" placeholder="as senha deve ser iguais"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <!-- botao cadastro-->
+        <ion-button expand="block" (click)="efetuarCadastro();">Cadastrar agora</ion-button>
+    </ion-grid>
 </ion-content>

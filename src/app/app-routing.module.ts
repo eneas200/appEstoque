@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
@@ -30,7 +30,11 @@ const routes: Routes = [
   {
     path: 'ver-produto',
     loadChildren: () => import('./ver-produto/ver-produto.module').then( m => m.VerProdutoPageModule)
+  },  {
+    path: 'cadastrar-fornecedor',
+    loadChildren: () => import('./cadastrar-fornecedor/cadastrar-fornecedor.module').then( m => m.CadastrarFornecedorPageModule)
   }
+
 ];
 
 @NgModule({

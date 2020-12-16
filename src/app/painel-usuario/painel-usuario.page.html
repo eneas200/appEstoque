@@ -1,9 +1,56 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>painel-usuario</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Meus Dados</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid>
 
+        <ion-row>
+            <!-- nome -->
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">Nome</ion-label>
+                    <ion-input [(ngModel)]="this.funcionario.nome_funcionario" type="text" placeholder="entre com seu nome"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <!-- email -->
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">Endereco de email</ion-label>
+                    <ion-input [(ngModel)]="this.funcionario.email_funcionario" type="email" placeholder="entre com seu meail"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <!-- senha -->
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">Senha</ion-label>
+                    <ion-input [(ngModel)]="this.funcionario.senha_funcionario" type="password" placeholder="informe a senha"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <!-- confirmar senha -->
+            <ion-col>
+                <ion-item>
+                    <ion-label position="floating">Confirmar Senha</ion-label>
+                    <ion-input [(ngModel)]="this.funcionario.confirmarSenha_funcionario" type="password" placeholder="as senha deve ser iguais"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <!-- botao cadastro-->
+        <ion-button expand="block" fill="outline" (click)="this.editarCadastro();">Salvar</ion-button>
+    </ion-grid>
 </ion-content>

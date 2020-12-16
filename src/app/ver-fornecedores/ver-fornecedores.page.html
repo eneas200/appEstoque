@@ -1,9 +1,39 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>ver-fornecedores</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Fornecedores</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid>
 
+        <ion-row>
+            <ion-item>
+                <ion-button (click)="efetuarCadastro();">Adicionar Fornecedor</ion-button>
+            </ion-item>
+        </ion-row>
+
+
+        <!-- List of Text Items  -->
+        <ion-list *ngIf="listaFornecedor.length">
+            <ion-item-group *ngFor="let emp of listaFornecedor">
+                <ion-item-divider>
+                    <ion-label> {{ emp.nome_empresa_fornecedor }} </ion-label>
+                </ion-item-divider>
+
+                <ion-item>
+                    <ion-label> {{ emp.nome_intermediador}} </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label> {{ emp.email_fornecedor }} </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label> {{ emp.urlsite_fornecedor }} </ion-label>
+                </ion-item>
+            </ion-item-group>
+        </ion-list>
+    </ion-grid>
 </ion-content>

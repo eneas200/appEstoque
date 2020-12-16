@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { NavigationEnd, Router } from '@angular/router';
+import { FuncionarioService } from 'src/service/FuncionarioService';
+import { Funcionario } from 'src/models/Funcionario';
 
 @Component({
   selector: 'app-root',
@@ -13,44 +16,34 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
+      title: 'Painel funcionário',
+      url: 'painel-usuario',
+      icon: 'person'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
+      title: 'Produtos',
+      url: 'ver-produto',
+      icon: 'today'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
-    },
-    {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
-    },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
-    }
+      title: 'Fornecedores',
+      url: 'ver-fornecedores',
+      icon: 'people'
+    },    
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-
+  
+  public funcionario: Funcionario = new Funcionario();
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private _menu: MenuController,
+    private _router: Router,
+    private _funcionarioService: FuncionarioService
   ) {
     this.initializeApp();
+    this.capturaRota();
+     
   }
 
   initializeApp() {
@@ -66,4 +59,33 @@ export class AppComponent implements OnInit {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
   }
+
+  efetuarLogout(){
+
+    // limpando o localStorage
+    localStorage.clear();
+    // bloquear o menu lateral
+    this._menu.swipeGesture(false);
+    // redirecionar para pagina login
+    this._router.navigate(['/login']);
+  }
+
+  buscaFuncionarioOnLine() {
+    const funcionarioOn: Funcionario = this._funcionarioService.result();
+     
+    if (funcionarioOn) {
+      this.funcionario = funcionarioOn;
+    }
+  }
+
+  capturaRota() {
+    this._router.events.subscribe(res => {
+      if (res instanceof NavigationEnd) {
+        
+        this.buscaFuncionarioOnLine();
+      }
+      
+    });
+  }
+
 }

@@ -1,9 +1,73 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>cadastrar-produto</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+
+        <ion-title>Cadastrar Produto</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid>
+        <ion-row>
+            <!-- nome do produto -->
+            <ion-col>
+                <ion-item>
+                    <ion-label position="stacked">Nome Produto</ion-label>
+                    <ion-input [(ngModel)]="produto.nome_produto" placeholder="Produto" type="text"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <!-- preço do produto -->
+            <ion-col>
+                <ion-item>
+                    <ion-label position="stacked">Preço Produto</ion-label>
+                    <ion-input [(ngModel)]="produto.preco_produto" placeholder="0.00" type="number"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <!-- quantidade do produto que será estocado-->
+            <ion-col>
+                <ion-item>
+                    <ion-label position="stacked">Quantidade total do produto</ion-label>
+                    <ion-input [(ngModel)]="produto.quantidade_produto" placeholder="quantidade que será armazenada" type="number"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+            <ion-col>
+                <ion-list>
+                    <ion-list-header>
+                        <ion-label> Categoria Produtos </ion-label>
+                    </ion-list-header>
+
+                    <ion-item>
+                        <ion-label>Categoria</ion-label>
+                        <ion-select class="select-categoria" [(ngModel)]="produto.categoria" placeholder="Selecione a categoria">
+                            <ion-select-option value="alimentos">Alimentos</ion-select-option>
+                            <ion-select-option value="limpeza">Limpeza</ion-select-option>
+                            <ion-select-option value="eletronico">Eletrônico</ion-select-option>
+                            <ion-select-option value="cama">Cama</ion-select-option>
+                            <ion-select-option value="domestico">Doméstico</ion-select-option>
+                            <ion-select-option value="esporte">Esporte</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+
+                </ion-list>
+            </ion-col>
+        </ion-row>
+
+
+        <ion-button expand="block" fill="outline" (click)="addCategoria()">Adicionar agora</ion-button>
+
+
+    </ion-grid>
 
 </ion-content>

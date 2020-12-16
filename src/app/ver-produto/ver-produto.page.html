@@ -1,9 +1,39 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>ver-produto</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+
+        <ion-title>Produtos</ion-title>
+
+        <ion-buttons slot="end">
+            <button (click)="addProdutos();" ion-button icon-only>
+			  <ion-icon name="add-circle-outline"></ion-icon>
+			</button>
+        </ion-buttons>
+
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid *ngIf="listaProdutos.length">
+        <ion-row *ngFor="let p of listaProdutos">
+            <ion-list>
+                <ion-item> {{p.nome_produto}} </ion-item>
 
+                <ion-item> {{p.preoc_produto}} </ion-item>
+            </ion-list>
+        </ion-row>
+
+        <ion-row>
+            <ion-item *ngIf="listaProdutos.length==0">
+                <ion-label>Não há produtos cadastrados ainda</ion-label>
+
+            </ion-item>
+        </ion-row>
+
+
+
+    </ion-grid>
 </ion-content>
