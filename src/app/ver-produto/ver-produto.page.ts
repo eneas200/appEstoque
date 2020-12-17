@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { Produto } from 'src/models/Produto';
 import { ProdutoService } from 'src/service/ProdutoService';
 @Component({
@@ -18,29 +18,26 @@ export class VerProdutoPage implements OnInit {
     private _router: Router,
     private _produtoService: ProdutoService,
     private _toastController: ToastController
-  ) { 
-  }
+  ) { }
 
   ionViewWillEnter(){
-    this.retornaProdutos();
-
+    this.carregarProdutos();
   }
 
-  retornaProdutos() {
-    console.log("metodo que rece um novo produto");
-    this._produtoService.buscarProduto().subscribe(produto => {
-      console.log(produto);
-      
-      this.messagemProdutos();
+  async carregarProdutos(){
+    let produtosCarregados = await this._produtoService.listaProdutos();
 
+    this.listaProdutos = produtosCarregados;
 
-    });
+    console.log(this.listaProdutos);
+    
+    this.messagemProdutos();
   }
   
   // exibe menssagem
   async messagemProdutos() {
     const toast = await this._toastController.create({
-      message: `Produto carregados`,
+      message: `Produtos carregados`,
       position: 'bottom',
       duration: 3000
     });

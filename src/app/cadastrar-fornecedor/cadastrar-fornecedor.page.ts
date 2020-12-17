@@ -27,18 +27,21 @@ export class CadastrarFornecedorPage implements OnInit {
   }
 
   salvarFornecedor(){
-    console.log(this.fornecedor);
+    
     this._fornecedorService.cadastrarFornecedor(this.fornecedor).subscribe(fornecedor => {
-      console.log(fornecedor);
-      this.messagemFornecedor();
+    
+      this.messagemFornecedor("Fornecedor cadastrado com sucesso!");
+
+      this._router.navigate(['/ver-fornecedores'])
+
     });
   }
 
-  async messagemFornecedor() {
+  async messagemFornecedor(texto) {
     const toast = await this._toastController.create({
-      message: `Fornecedor cadastrado com sucesso!`,
+      message: `${texto}`,
       position: 'bottom',
-      duration: 2000
+      duration: 1500
     });
     toast.present();
   }

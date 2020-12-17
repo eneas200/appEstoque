@@ -21,17 +21,17 @@
         <ion-list *ngIf="listaFornecedor.length">
             <ion-item-group *ngFor="let emp of listaFornecedor">
                 <ion-item-divider>
-                    <ion-label> {{ emp.nome_empresa_fornecedor }} </ion-label>
+                    <ion-label>Empresa <b> {{ emp.nome_empresa_fornecedor }} </b> </ion-label>
                 </ion-item-divider>
 
                 <ion-item>
-                    <ion-label> {{ emp.nome_intermediador}} </ion-label>
+                    <ion-label>Responsável <strong> {{ emp.nome_intermediador}} </strong> </ion-label>
                 </ion-item>
                 <ion-item>
-                    <ion-label> {{ emp.email_fornecedor }} </ion-label>
+                    <ion-label>Endereco de e-mail <strong> {{ emp.email_fornecedor }} </strong> </ion-label>
                 </ion-item>
                 <ion-item>
-                    <ion-label> {{ emp.urlsite_fornecedor }} </ion-label>
+                    <ion-label>Url: <strong> {{ emp.urlsite_fornecedor }} </strong> </ion-label>
                 </ion-item>
             </ion-item-group>
         </ion-list>

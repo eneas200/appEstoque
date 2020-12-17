@@ -1,0 +1,27 @@
+// ion-button {
+//     --box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+//     --margin-botton: 10px;
+// }
+img#img-centralizada {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+// btn login
+ion-button#btn-login {
+    --margin-bottom: 20px;
+    --background: rgb(0, 0, 0);
+    --color: white;
+    --border-radius: 20px;
+    --box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+//btn cadastro
+ion-button#btn-cadastro {
+    --background: rgb(0, 0, 0);
+    --color: white;
+    --border-radius: 20px;
+    --box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}

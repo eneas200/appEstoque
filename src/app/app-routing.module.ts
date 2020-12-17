@@ -33,6 +33,10 @@ const routes: Routes = [
   },  {
     path: 'cadastrar-fornecedor',
     loadChildren: () => import('./cadastrar-fornecedor/cadastrar-fornecedor.module').then( m => m.CadastrarFornecedorPageModule)
+  },
+  {
+    path: 'sobre',
+    loadChildren: () => import('./sobre/sobre.module').then( m => m.SobrePageModule)
   }
 
 ];

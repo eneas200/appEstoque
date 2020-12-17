@@ -4,4 +4,5 @@ export class Fornecedor {
     public nome_intermediador: string = null;
     public email_fornecedor: string = null;
     public urlsite_fornecedor: string = null;
+    public fornecdoresList = [];
 }

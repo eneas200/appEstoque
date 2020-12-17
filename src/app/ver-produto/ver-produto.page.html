@@ -17,23 +17,39 @@
 </ion-header>
 
 <ion-content>
-    <ion-grid *ngIf="listaProdutos.length">
-        <ion-row *ngFor="let p of listaProdutos">
-            <ion-list>
-                <ion-item> {{p.nome_produto}} </ion-item>
 
-                <ion-item> {{p.preoc_produto}} </ion-item>
-            </ion-list>
+    <ion-grid>
+        <ion-row *ngIf="listaProdutos.length">
+            <ion-col *ngFor="let p of listaProdutos">
+
+                <ion-list>
+
+                    <ion-item>
+                        <ion-label><strong>Categória</strong> {{p.categoria}}</ion-label>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label><strong>Nome Produto</strong> {{p.nome_produto}}</ion-label>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label>
+                            <string>Preço R$</string> {{p.preco_produto}}</ion-label>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label><strong>Quantidade</strong> {{p.quantidade_produto}}</ion-label>
+                    </ion-item>
+
+                </ion-list>
+            </ion-col>
         </ion-row>
 
         <ion-row>
             <ion-item *ngIf="listaProdutos.length==0">
-                <ion-label>Não há produtos cadastrados ainda</ion-label>
-
+                <ion-label>Não há <em>produtos</em> cadastrados!</ion-label>
             </ion-item>
         </ion-row>
-
-
-
     </ion-grid>
+
 </ion-content>

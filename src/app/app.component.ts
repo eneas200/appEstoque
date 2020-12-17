@@ -30,6 +30,11 @@ export class AppComponent implements OnInit {
       url: 'ver-fornecedores',
       icon: 'people'
     },    
+    {
+      title: 'Sobre',
+      url: 'sobre',
+      icon: 'person'
+    }
   ];
   
   public funcionario: Funcionario = new Funcionario();

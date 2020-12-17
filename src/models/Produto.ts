@@ -4,6 +4,6 @@ export class Produto {
     public preco_produto: number = null;
     public quantidade_produto: number = null;
     public categoria: string = null;
-    public produto = [];
+    public produtos = [];
      
 }

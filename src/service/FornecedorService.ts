@@ -13,6 +13,8 @@ export class FornecedorService implements IFornecedorService {
     
     public apiUrl: string = `${Global.ApiUrl}fornecedor`;
 
+    public fornecedorAll: Fornecedor[] = new Array<Fornecedor>();
+
     constructor(private _httpClient: HttpClient){}
 
     cadastrarFornecedor(fornecedor: Fornecedor): Observable<Fornecedor> {
@@ -34,14 +36,38 @@ export class FornecedorService implements IFornecedorService {
 
     }
 
+
     alterarFornecedor(fornecedor: Fornecedor): Observable<Fornecedor> {
         throw new Error("Method not implemented.");
     }
     
-    buscarFornecedor(): Observable<Fornecedor> {
+    buscarFornecedor(): Observable<Fornecedor[]> {
         
-        return this._httpClient.get<Fornecedor>(`${this.apiUrl}/getFornecedor`);
+        return this._httpClient.get<Fornecedor[]>(`${this.apiUrl}/getFornecedor`);
 
+    }
+
+    listarAllFornecedores(): Promise<Fornecedor[]>{
+
+        const promise = new Promise<Fornecedor[]>(async (resolve, reject) => {
+
+            try {
+                let fornecedor = await this.buscarFornecedor();
+
+                fornecedor.subscribe(resposta => {
+                    
+                    this.fornecedorAll = resposta;
+
+                    resolve(this.fornecedorAll);
+                });
+
+            } catch(err) {
+
+                reject(err);
+            }
+        });
+        
+        return promise;
     }
     
 }

@@ -5,6 +5,7 @@ import { MenuController, ToastController } from '@ionic/angular';
 import { Login } from 'src/models/Login';
 import { FuncionarioService } from 'src/service/FuncionarioService';
 import { LoginService } from 'src/service/LoginService';
+import { ProdutoService } from 'src/service/ProdutoService';
 
 @Component({
   selector: 'app-login',
@@ -23,24 +24,31 @@ export class LoginPage implements OnInit {
     private _loginService: LoginService,
     private _funcionarioService: FuncionarioService,
     private _toastController: ToastController
-
+    
   ) { }
 
   ngOnInit() { }
   
   // manipulando o menu lateral
   ionViewWillEnter() {
+    
     this._menu.swipeGesture(false);
+
   }
-   
+
+  ionViewDidLeave() {
+    this.login = null;
+  }
+
   // funções da pagina login
- efetuarLogin() {
+  efetuarLogin() {
     // efetuarLogin
+    console.log(this.login);
     this._loginService.realizarLogin(this.login).subscribe(funcionario => {
 
       console.log(funcionario);
       
-      this.messagemLogin();
+      this.messagem("Usuário logado com sucesso!");
 
       this._funcionarioService.guardaLoginFuncionario(funcionario);
 
@@ -55,9 +63,9 @@ export class LoginPage implements OnInit {
   }
 
   // exibe menssagem
-  async messagemLogin() {
+  async messagem(msg) {
     const toast = await this._toastController.create({
-      message: `Usuário logado com sucesso!`,
+      message: `${msg}`,
       position: 'bottom',
       duration: 3000
     });

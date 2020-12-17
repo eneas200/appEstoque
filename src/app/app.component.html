@@ -14,9 +14,18 @@
                     </ion-menu-toggle>
                 </ion-list>
 
-                <ion-menu-toggle>
-                    <ion-button (click)="efetuarLogout();">Sair</ion-button>
-                </ion-menu-toggle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col class="btn-sair">
+
+                            <ion-menu-toggle>
+                                <ion-button size="small" color="danger" (click)="efetuarLogout();">Sair</ion-button>
+                            </ion-menu-toggle>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+
 
 
             </ion-content>

@@ -11,13 +11,13 @@ import { FuncionarioService } from "./FuncionarioService";
 export class ProdutoService  implements IProdutoService {
 
     public apiurl: string = `${Global.ApiUrl}produtos`;
-    public produtos: Produto[] = [];
-
+    public vetorProdutos: Produto[] = new Array<Produto>();
+    
+    public produto : Produto = new Produto();
     constructor(
         private _httpCli:HttpClient,
         private _funcionarioService: FuncionarioService
-        
-        ) {}
+    ) {}
 
 
     cadastrarProduto(produto: Produto): Observable<Produto> {
@@ -31,31 +31,10 @@ export class ProdutoService  implements IProdutoService {
     alterarProduto(produto: Produto): Observable<Produto> {
         throw new Error("Method not implemented.");
     }
-    buscarProduto(): Observable<Produto> {
+
+    buscarProduto(): Observable<Produto[]> {
         
-        return this._httpCli.get<Produto>(`${this.apiurl}/getProdutos`);
-    }
-    listaProduto(): Promise<Produto[]> {
-        this.produtos = [];
-        const promise = new Promise<Produto[]>(async (resolve, reject) => {
-            try { 
-                // forma 1
-                // const produto = await this.buscarProduto().toPromise();
-                // this.produtos = produto;
-                // resolve(produto);
-
-                // forma 2
-                this.buscarProduto().subscribe(res => {
-                    this.produtos.push(res);
-                    
-                    resolve(this.produtos);
-                });
-
-            } catch(e) {
-               reject(e); 
-            }
-        });
-        return promise;
+        return this._httpCli.get<Produto[]>(`${this.apiurl}/getProdutos`);
     }
 
     verificandoAtributos(produto: Produto) : void {
@@ -64,6 +43,29 @@ export class ProdutoService  implements IProdutoService {
         if(!produto.quantidade_produto) throw new Error("campo quantidade do produto deve ser preenchido");
         if(!produto.categoria) throw new Error("campo categoria do produto deve ser preenchido");
     }
-   
 
+
+    listaProdutos(): Promise<Produto[]> {
+        
+        const promise = new Promise<Produto[]>(async (resolve, reject) => {
+            try {
+                
+                let produto = await this.buscarProduto();
+
+                produto.subscribe(res => {
+                    
+                    this.vetorProdutos = res;
+
+                    resolve(this.vetorProdutos);
+                });
+
+            } catch(err) {
+                reject(err);
+            }
+        });       
+        
+        return promise;
+    };
+
+  
 }
