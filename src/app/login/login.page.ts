@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController, ToastController } from '@ionic/angular';
 
 import { Login } from 'src/models/Login';
 import { FuncionarioService } from 'src/service/FuncionarioService';
 import { LoginService } from 'src/service/LoginService';
-import { ProdutoService } from 'src/service/ProdutoService';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +12,7 @@ import { ProdutoService } from 'src/service/ProdutoService';
   styleUrls: ['./login.page.scss'],
 })
 
-export class LoginPage implements OnInit {
+export class LoginPage implements OnInit, OnDestroy {
   
   public login: Login = new Login();
   
@@ -28,7 +27,10 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() { }
-  
+  ngOnDestroy() {
+    this.login = null;
+    console.log(this.login," login limpa");
+  }
   // manipulando o menu lateral
   ionViewWillEnter() {
     
@@ -36,9 +38,9 @@ export class LoginPage implements OnInit {
 
   }
 
-  ionViewDidLeave() {
-    this.login = null;
-  }
+  
+  
+  
 
   // funções da pagina login
   efetuarLogin() {

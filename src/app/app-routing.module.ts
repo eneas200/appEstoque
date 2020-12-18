@@ -30,14 +30,15 @@ const routes: Routes = [
   {
     path: 'ver-produto',
     loadChildren: () => import('./ver-produto/ver-produto.module').then( m => m.VerProdutoPageModule)
-  },  {
-    path: 'cadastrar-fornecedor',
-    loadChildren: () => import('./cadastrar-fornecedor/cadastrar-fornecedor.module').then( m => m.CadastrarFornecedorPageModule)
   },
   {
-    path: 'sobre',
-    loadChildren: () => import('./sobre/sobre.module').then( m => m.SobrePageModule)
+    path: 'cadastrar-fornecedor',
+    loadChildren: () => import('./cadastrar-fornecedor/cadastrar-fornecedor.module').then( m => m.CadastrarFornecedorPageModule)
+  },  {
+    path: 'filtrar-produtos',
+    loadChildren: () => import('./filtrar-produtos/filtrar-produtos.module').then( m => m.FiltrarProdutosPageModule)
   }
+
 
 ];
 

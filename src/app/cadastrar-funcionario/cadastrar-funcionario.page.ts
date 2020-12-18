@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController, ToastController } from '@ionic/angular';
 import { Funcionario } from 'src/models/Funcionario';
@@ -20,7 +20,7 @@ export class CadastrarFuncionarioPage implements OnInit {
 
   ngOnInit() {
   }
-//  efetuarCadastro
+  // efetuarCadastro
   efetuarCadastro()
   {
     
@@ -30,15 +30,16 @@ export class CadastrarFuncionarioPage implements OnInit {
       
       console.log(funcionario);
       
+      this.messageCadastro();
+
       this._router.navigate(['/login']);
 
     });
 
-    
   }
 
   // exibe menssagem
-  async alterandoDados() {
+  async messageCadastro() {
     const toast = await this._toastController.create({
       message: `Cadastro efetuado com êxito!`,
       position: 'bottom',
@@ -51,6 +52,13 @@ export class CadastrarFuncionarioPage implements OnInit {
   ionViewWillEnter ()
   {
     this._menu.swipeGesture(false)
+  }
+
+  
+  ngOnDestroy(){
+    console.log("limpando variavel funcionario");
+    this.funcionario=null;
+
   }
 
 }

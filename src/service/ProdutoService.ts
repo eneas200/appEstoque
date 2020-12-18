@@ -22,7 +22,11 @@ export class ProdutoService  implements IProdutoService {
 
     cadastrarProduto(produto: Produto): Observable<Produto> {
         // validando atributos
-        this.verificandoAtributos(produto);
+        if(!produto.nome_produto) throw new Error("campo nome do produto deve ser preenchido");
+        if(!produto.preco_produto) throw new Error("campo preço do produto deve ser preenchido");
+        if(!produto.quantidade_produto) throw new Error("campo quantidade do produto deve ser preenchido");
+        if(!produto.categoria) throw new Error("campo categoria do produto deve ser preenchido");
+        
         // enviando dados para o back-end que irá salvar no banco
         return this._httpCli.post<Produto>(this.apiurl, produto);
 
@@ -36,14 +40,6 @@ export class ProdutoService  implements IProdutoService {
         
         return this._httpCli.get<Produto[]>(`${this.apiurl}/getProdutos`);
     }
-
-    verificandoAtributos(produto: Produto) : void {
-        if(!produto.nome_produto) throw new Error("campo nome do produto deve ser preenchido");
-        if(!produto.preco_produto) throw new Error("campo preço do produto deve ser preenchido");
-        if(!produto.quantidade_produto) throw new Error("campo quantidade do produto deve ser preenchido");
-        if(!produto.categoria) throw new Error("campo categoria do produto deve ser preenchido");
-    }
-
 
     listaProdutos(): Promise<Produto[]> {
         
@@ -67,5 +63,27 @@ export class ProdutoService  implements IProdutoService {
         return promise;
     };
 
-  
+    guardaProdutosLocal(produto: Produto[]){
+        localStorage.setItem("produtosCadastrados", JSON.stringify(produto));
+    }
+
+    pegarProdutosLocal() {
+        let pegandoProdutos =localStorage.getItem("produtosCadastrados");
+        
+        let produtosList: Produto[] = [];
+        
+        produtosList = JSON.parse(pegandoProdutos);
+        
+        return produtosList;
+
+    }
+
+    format(vetor: Produto[]){
+        
+        for(let p of vetor){
+          p.preco_produto = parseFloat(p.preco_produto.toFixed(2));
+        }
+    }
+
+   
 }

@@ -14,7 +14,7 @@
             <!-- nome do produto -->
             <ion-col>
                 <ion-item>
-                    <ion-label position="stacked">Nome Produto</ion-label>
+                    <ion-label class="size-text" position="stacked">Nome Produto</ion-label>
                     <ion-input [(ngModel)]="produto.nome_produto" placeholder="Produto" type="text"></ion-input>
                 </ion-item>
             </ion-col>
@@ -24,7 +24,7 @@
             <!-- preço do produto -->
             <ion-col>
                 <ion-item>
-                    <ion-label position="stacked">Preço Produto</ion-label>
+                    <ion-label class="size-text" position="stacked">Preço Produto</ion-label>
                     <ion-input [(ngModel)]="produto.preco_produto" placeholder="0.00" type="number"></ion-input>
                 </ion-item>
             </ion-col>
@@ -34,7 +34,7 @@
             <!-- quantidade do produto que será estocado-->
             <ion-col>
                 <ion-item>
-                    <ion-label position="stacked">Quantidade total do produto</ion-label>
+                    <ion-label class="size-text" position="stacked">Quantidade total do produto</ion-label>
                     <ion-input [(ngModel)]="produto.quantidade_produto" placeholder="quantidade que será armazenada" type="number"></ion-input>
                 </ion-item>
             </ion-col>
@@ -45,11 +45,11 @@
             <ion-col>
                 <ion-list>
                     <ion-list-header>
-                        <ion-label> Categoria Produtos </ion-label>
+                        <ion-label> <b>Categoria Produtos</b> </ion-label>
                     </ion-list-header>
 
                     <ion-item>
-                        <ion-label>Categoria</ion-label>
+                        <ion-label class="size-text">Categoria</ion-label>
                         <ion-select class="select-categoria" [(ngModel)]="produto.categoria" placeholder="Selecione a categoria">
                             <ion-select-option value="alimentos">Alimentos</ion-select-option>
                             <ion-select-option value="limpeza">Limpeza</ion-select-option>
@@ -65,7 +65,7 @@
         </ion-row>
 
 
-        <ion-button expand="block" fill="outline" (click)="addCategoria()">Adicionar agora</ion-button>
+        <ion-button class="btn-cadastrar-produto" expand="block" (click)="addCategoria()">Adicionar agora</ion-button>
 
 
     </ion-grid>

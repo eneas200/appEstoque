@@ -13,7 +13,7 @@ import { Funcionario } from 'src/models/Funcionario';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 0;
+  public selectedIndex = 1;
   public appPages = [
     {
       title: 'Painel funcionário',
@@ -29,12 +29,7 @@ export class AppComponent implements OnInit {
       title: 'Fornecedores',
       url: 'ver-fornecedores',
       icon: 'people'
-    },    
-    {
-      title: 'Sobre',
-      url: 'sobre',
-      icon: 'person'
-    }
+    }   
   ];
   
   public funcionario: Funcionario = new Funcionario();

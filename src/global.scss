@@ -34,7 +34,30 @@ ion-toolbar {
     ion-title {
         --color: white;
     }
-    ion-menu-button {
+    ion-menu-button,
+    ion-back-button {
         --color: #fff;
     }
+}
+
+ion-button.btn-default {
+    --background: #293846;
+}
+
+ion-content {
+    --background: rgba(0, 0, 0, 0.3);
+    ion-button.btn-login {
+        --background: #2B455D;
+    }
+    ion-button.btn-login:hover {
+        --background: #293846;
+    }
+    ion-button.btn-cadastro {
+        --background: #209FD6;
+    }
+}
+
+ion-input,
+ion-item {
+    --highlight-background: #253B4F;
 }

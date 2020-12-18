@@ -6,11 +6,11 @@
         </ion-buttons>
 
         <ion-title>Produtos</ion-title>
-
         <ion-buttons slot="end">
-            <button (click)="addProdutos();" ion-button icon-only>
-			  <ion-icon name="add-circle-outline"></ion-icon>
-			</button>
+            
+            <img class="icon-add-plus" (click)="filtrarProdutos();" src="../../assets/icon/filter.svg" width="35pt" height="35pt">
+            <img class="icon-add-plus" (click)="addProdutos();" src="../../assets/icon/add-full.svg" width="35pt" height="35pt">
+
         </ion-buttons>
 
     </ion-toolbar>
@@ -23,8 +23,8 @@
             <ion-col *ngFor="let p of listaProdutos">
 
                 <ion-list>
-
-                    <ion-item>
+                    
+                    <ion-item >
                         <ion-label><strong>Categória</strong> {{p.categoria}}</ion-label>
                     </ion-item>
 
@@ -34,7 +34,7 @@
 
                     <ion-item>
                         <ion-label>
-                            <string>Preço R$</string> {{p.preco_produto}}</ion-label>
+                            <strong>Preço R$</strong> {{p.preco_produto}}</ion-label>
                     </ion-item>
 
                     <ion-item>
@@ -50,6 +50,7 @@
                 <ion-label>Não há <em>produtos</em> cadastrados!</ion-label>
             </ion-item>
         </ion-row>
+
     </ion-grid>
 
 </ion-content>

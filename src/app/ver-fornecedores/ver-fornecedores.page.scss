@@ -1,0 +1,20 @@
+ion-buttons {
+    img.icon-add-plus {
+        margin-right: 6px;
+        --background: #131338;
+    }
+}
+
+ion-content {
+    ion-button.btn-add-fornecedor {
+        margin: 10px 0px;
+        --background: #293846;
+    }
+    ion-label.label-empresa {
+        font-size: 20px;
+    }
+    ion-list {
+        border: solid 3px #293846;
+        --box-shadow: 5px 5px 10px #293846;
+    }
+}

@@ -6,4 +6,5 @@ export interface IProdutoService {
     alterarProduto(produto: Produto): Observable<Produto>;
     buscarProduto(): Observable<Produto[]>;
     listaProdutos(): Promise<Produto[]>;
+    
 }

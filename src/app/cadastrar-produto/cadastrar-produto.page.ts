@@ -30,12 +30,12 @@ export class CadastrarProdutoPage implements OnInit {
 
   ngOnDestroy(){ }
 
-  async addCategoria() {
+  addCategoria() {
     // saida no console
     console.log(this.produto);
 
     // analisar atributos dos produtos
-    await this._produtoService.cadastrarProduto(this.produto).subscribe(produto => {
+    this._produtoService.cadastrarProduto(this.produto).subscribe(produto => {
       // exibindo menssagem
      this.adicionandoLista(produto.nome_produto);
      

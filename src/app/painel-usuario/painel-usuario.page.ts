@@ -15,9 +15,11 @@ export class PainelUsuarioPage implements OnInit {
   constructor(
     private _funcionarioService: FuncionarioService,
     private _toastController: ToastController
-  ) { 
+  ) { }
 
-    this.funcionario = this._funcionarioService.result();
+  ionViewWillEnter() {
+
+      this.funcionario = this._funcionarioService.result();
 
   }
 
@@ -31,7 +33,7 @@ export class PainelUsuarioPage implements OnInit {
       if(funcionario) {
 
         this._funcionarioService.guardaLoginFuncionario(funcionario);
-        this.alterandoDados();
+        this.messagemAlterandoDados(`Dados alterado com sucesso!`);
 
       }
     });
@@ -39,9 +41,9 @@ export class PainelUsuarioPage implements OnInit {
   }
 
   // exibe menssagem
-  async alterandoDados() {
+  async messagemAlterandoDados(texto: string) {
     const toast = await this._toastController.create({
-      message: `Dados alterado com sucesso!`,
+      message: texto,
       position: 'bottom',
       duration: 3000
     });
