@@ -1,7 +1,8 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-menu></ion-back-menu>
+            <!-- <ion-back-menu></ion-back-menu> -->
+            <img class="seta-esquerda" (click)="voltarFornecedor();" src="../../assets/icon/seta-esquerda.svg" width="25pt" height="25pt">
         </ion-buttons>
         <ion-title>Cadastrar Fornecedor</ion-title>
     </ion-toolbar>
@@ -49,7 +50,7 @@
             </ion-col>
         </ion-row>
 
-        <ion-button class="btn-default" (click)="salvarFornecedor();">
+        <ion-button class="btn-default" expand="block" (click)="salvarFornecedor();">
             CADASTRAR FORNECEDOR
         </ion-button>
 

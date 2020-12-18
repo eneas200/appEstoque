@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Produto } from 'src/models/Produto';
+import { GlobalService } from 'src/service/GlobalService';
 import { ProdutoService } from 'src/service/ProdutoService';
 
 @Component({
@@ -10,15 +11,14 @@ import { ProdutoService } from 'src/service/ProdutoService';
   styleUrls: ['./cadastrar-produto.page.scss'],
 })
 
-export class CadastrarProdutoPage implements OnInit {
+export class CadastrarProdutoPage implements OnInit, OnDestroy {
   
   public listaProdutos: Produto[] = new Array<Produto>();
-  public produto: Produto = new Produto();;
+  public produto: Produto = new Produto();
 
   constructor(
-    private _toastController: ToastController,
-    private _produtoService: ProdutoService,
-    private _router: Router
+    private _globalService: GlobalService,
+    private _produtoService: ProdutoService
   ) { 
   }
 
@@ -28,7 +28,9 @@ export class CadastrarProdutoPage implements OnInit {
 
   ngOnInit() { }
 
-  ngOnDestroy(){ }
+  ngOnDestroy(){
+    // this.produto = null;
+  }
 
   addCategoria() {
     // saida no console
@@ -36,22 +38,14 @@ export class CadastrarProdutoPage implements OnInit {
 
     // analisar atributos dos produtos
     this._produtoService.cadastrarProduto(this.produto).subscribe(produto => {
+      
       // exibindo menssagem
-     this.adicionandoLista(produto.nome_produto);
+      this._globalService.exibeMessage( produto.nome_produto );
      
       // redireciona para ver produto
-      this._router.navigate(['/ver-produto']);
+      this._globalService.mudaPagina( 'ver-produto' );
     });
-  }
-  // exibe menssagem
-  async adicionandoLista(nome_produto) {
-    const toast = await this._toastController.create({
-      header: `Produtos`,
-      message: `${nome_produto} adicionado!`,
-      position: 'bottom',
-      duration: 2500
-    });
-    toast.present();
+
   }
 
 }

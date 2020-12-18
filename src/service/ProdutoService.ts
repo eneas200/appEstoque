@@ -16,7 +16,6 @@ export class ProdutoService  implements IProdutoService {
     public produto : Produto = new Produto();
     constructor(
         private _httpCli:HttpClient,
-        private _funcionarioService: FuncionarioService
     ) {}
 
 
@@ -74,6 +73,8 @@ export class ProdutoService  implements IProdutoService {
         
         produtosList = JSON.parse(pegandoProdutos);
         
+        this.format(produtosList);
+
         return produtosList;
 
     }
@@ -83,6 +84,33 @@ export class ProdutoService  implements IProdutoService {
         for(let p of vetor){
           p.preco_produto = parseFloat(p.preco_produto.toFixed(2));
         }
+
+    }
+
+    filtrandoProdutos(produto: Produto){
+        let resposta: Produto[] = [];
+
+        if(produto.nome_produto || produto.categoria ) {
+        
+            resposta = this.pegarProdutosLocal().filter(
+                produtos => produtos.categoria == produto.categoria || 
+                            produtos.nome_produto == produto.nome_produto
+            );
+
+        } else if (produto.nome_produto) {
+        
+            resposta = this.pegarProdutosLocal().filter(
+                produtos => produtos.nome_produto == produto.nome_produto
+            );
+
+        } else if(produto.categoria) {
+        
+            resposta = this.pegarProdutosLocal().filter(
+                produtos => produtos.categoria == produto.categoria
+            );
+
+        }
+        return resposta;
     }
 
    

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Funcionario } from 'src/models/Funcionario';
 import { FuncionarioService } from 'src/service/FuncionarioService';
+import { GlobalService } from 'src/service/GlobalService';
 
 @Component({
   selector: 'app-painel-usuario',
@@ -14,7 +15,7 @@ export class PainelUsuarioPage implements OnInit {
 
   constructor(
     private _funcionarioService: FuncionarioService,
-    private _toastController: ToastController
+    private _globalService: GlobalService 
   ) { }
 
   ionViewWillEnter() {
@@ -33,21 +34,12 @@ export class PainelUsuarioPage implements OnInit {
       if(funcionario) {
 
         this._funcionarioService.guardaLoginFuncionario(funcionario);
-        this.messagemAlterandoDados(`Dados alterado com sucesso!`);
+        
+        this._globalService.exibeMessage(`Dados alterado com sucesso!`);
 
       }
     });
     
-  }
-
-  // exibe menssagem
-  async messagemAlterandoDados(texto: string) {
-    const toast = await this._toastController.create({
-      message: texto,
-      position: 'bottom',
-      duration: 3000
-    });
-    toast.present();
   }
 
 }

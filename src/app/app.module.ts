@@ -14,6 +14,7 @@ import { LoginService } from 'src/service/LoginService';
 import { ProdutoService } from 'src/service/ProdutoService';
 import { ErrosGlobais } from 'src/shared/ErrosGlobais';
 import { HttpClientModule } from '@angular/common/http';
+import { GlobalService } from 'src/service/GlobalService';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     FornecedorService,
     FuncionarioService,
     LoginService,
+    GlobalService,
     ProdutoService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {provide: ErrorHandler, useClass: ErrosGlobais}

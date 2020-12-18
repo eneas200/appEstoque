@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuController, ToastController } from '@ionic/angular';
 import { Fornecedor } from 'src/models/Fornecedor';
 import { FornecedorService } from 'src/service/FornecedorService';
+import { GlobalService } from 'src/service/GlobalService';
 
 @Component({
   selector: 'app-cadastrar-fornecedor',
@@ -11,13 +12,14 @@ import { FornecedorService } from 'src/service/FornecedorService';
 })
 export class CadastrarFornecedorPage implements OnInit {
   public fornecedor: Fornecedor = new Fornecedor();
+  
   constructor(
+
     private _menu: MenuController,
-    private _router: Router,
     private _fornecedorService: FornecedorService,
-    private _toastController: ToastController
-  ) {
-   }
+    private _globalService: GlobalService
+
+  ) { }
 
   ngOnInit() {
   }
@@ -30,20 +32,16 @@ export class CadastrarFornecedorPage implements OnInit {
     
     this._fornecedorService.cadastrarFornecedor(this.fornecedor).subscribe(fornecedor => {
     
-      this.messagemFornecedor("Fornecedor cadastrado com sucesso!");
+      this._globalService.exibeMessage(`Empresa, ${fornecedor.nome_empresa_fornecedor} cadastrado com sucesso!`);
 
-      this._router.navigate(['/ver-fornecedores'])
+      this._globalService.mudaPagina( 'ver-fornecedores' );
 
     });
   }
 
-  async messagemFornecedor(texto) {
-    const toast = await this._toastController.create({
-      message: `${texto}`,
-      position: 'bottom',
-      duration: 1500
-    });
-    toast.present();
+  voltarFornecedor() 
+  {
+    this._globalService.mudaPagina( 'ver-fornecedores' ); // (OTIMIZAÇÃO)
   }
 
 }

@@ -4,6 +4,7 @@ import { MenuController, ToastController } from '@ionic/angular';
 
 import { Login } from 'src/models/Login';
 import { FuncionarioService } from 'src/service/FuncionarioService';
+import { GlobalService } from 'src/service/GlobalService';
 import { LoginService } from 'src/service/LoginService';
 
 @Component({
@@ -19,18 +20,18 @@ export class LoginPage implements OnInit, OnDestroy {
   constructor(
 
     private _menu: MenuController, 
-    private _router: Router,
+    private _globalService: GlobalService,
     private _loginService: LoginService,
-    private _funcionarioService: FuncionarioService,
-    private _toastController: ToastController
+    private _funcionarioService: FuncionarioService
     
   ) { }
 
   ngOnInit() { }
+
   ngOnDestroy() {
     this.login = null;
-    console.log(this.login," login limpa");
   }
+
   // manipulando o menu lateral
   ionViewWillEnter() {
     
@@ -38,40 +39,27 @@ export class LoginPage implements OnInit, OnDestroy {
 
   }
 
-  
-  
-  
-
   // funções da pagina login
   efetuarLogin() {
+    
     // efetuarLogin
     console.log(this.login);
     this._loginService.realizarLogin(this.login).subscribe(funcionario => {
 
       console.log(funcionario);
       
-      this.messagem("Usuário logado com sucesso!");
+      this._globalService.exibeMessage( "Usuário logado com sucesso!" );
 
-      this._funcionarioService.guardaLoginFuncionario(funcionario);
+      this._funcionarioService.guardaLoginFuncionario( funcionario );
 
-      this._router.navigate(['/ver-produto']);
+      this._globalService.mudaPagina( 'ver-produto' );
     });
   }
 
   // executado quando o usuario clica no botao cadastrar
-  efetuarCadastro() 
+  efetuarCadastro() // (OTIMIZAÇÃO)
   {
-    this._router.navigate( [ '/cadastrar-funcionario' ] );
-  }
-
-  // exibe menssagem
-  async messagem(msg) {
-    const toast = await this._toastController.create({
-      message: `${msg}`,
-      position: 'bottom',
-      duration: 3000
-    });
-    toast.present();
+    this._globalService.mudaPagina( 'cadastrar-funcionario' );
   }
   
 }

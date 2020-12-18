@@ -4,9 +4,9 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>Fornecedores</ion-title>
-        
-           <ion-buttons slot="end">
-            
+
+        <ion-buttons slot="end">
+
             <img class="icon-add-plus" (click)="efetuarCadastro();" src="../../assets/icon/add-full.svg" width="35pt" height="35pt">
 
         </ion-buttons>
@@ -15,8 +15,6 @@
 
 <ion-content>
     <ion-grid>
-
-        <!-- <ion-button class="btn-add-fornecedor" (click)="efetuarCadastro();">Adicionar Fornecedor</ion-button> -->
 
         <ion-row *ngIf="listaFornecedor.length">
             <ion-col *ngFor="let emp of listaFornecedor">
@@ -42,6 +40,21 @@
                         </ion-item>
 
                     </ion-item-group>
+
+                </ion-list>
+            </ion-col>
+        </ion-row>
+
+
+        <!-- se não houver fornecedor cadastrado exibe uma messagem -->
+        <ion-row *ngIf="listaFornecedor.length == 0">
+            <ion-col>
+
+                <ion-list>
+
+                    <ion-item>
+                        <ion-label class="label-empresa"> <b> Não há Fornecedores cadastrados! </b> </ion-label>
+                    </ion-item>
 
                 </ion-list>
             </ion-col>

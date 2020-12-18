@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 import { Produto } from 'src/models/Produto';
+import { GlobalService } from 'src/service/GlobalService';
 import { ProdutoService } from 'src/service/ProdutoService';
 @Component({
   selector: 'app-ver-produto',
@@ -13,9 +14,8 @@ export class VerProdutoPage implements OnInit {
   public listaProdutos: Produto[] = new Array<Produto>();
 
   constructor(
-    private _router: Router,
     private _produtoService: ProdutoService,
-    private _toastController: ToastController
+    private _globalService: GlobalService
   ) { }
 
   ionViewWillEnter(){
@@ -26,32 +26,25 @@ export class VerProdutoPage implements OnInit {
   async carregarProdutos(){
     let produtosCarregados = await this._produtoService.listaProdutos();
 
+    this._produtoService.format(produtosCarregados);
+    
     this.listaProdutos = produtosCarregados;
 
     this._produtoService.guardaProdutosLocal(this.listaProdutos);
     
     console.log(this.listaProdutos);
     
-    this.messagemProdutos();
+    this._globalService.exibeMessage(`Produtos Carregados!`);
   }
   
-  async messagemProdutos() { // exibe menssagem
-    const toast = await this._toastController.create({
-      message: `Produtos carregados`,
-      position: 'bottom',
-      duration: 3000
-    });
-    toast.present();
-  }
-
-  addProdutos()
-  {// redireciona para a pagina de cadastro de produtos
-  	this._router.navigate(['/cadastrar-produto'])
+  addProdutos() // (OTIMIZAÇÃO)
+  { // redireciona para a pagina de cadastro de produtos
+    this._globalService.mudaPagina('cadastrar-produto');
   }
   
-  filtrarProdutos()
-  {// redireciona para pagina de filtros
-      this._router.navigate(['filtrar-produtos']);
+  filtrarProdutos() // (OTIMIZAÇÃO)
+  { // redireciona para pagina de filtros
+    this._globalService.mudaPagina('filtrar-produtos');
   }
 
   ngOnInit() { }

@@ -1,14 +1,16 @@
 <ion-header>
+
     <ion-toolbar>
+
         <ion-buttons slot="start">
-            <!--<ion-back-button></ion-back-button>-->
             <img class="seta-esquerda" (click)="voltarProdutos();" src="../../assets/icon/seta-esquerda.svg" width="25pt" height="25pt">
         </ion-buttons>
-        
+
         <ion-title> <strong>Filtros</strong> </ion-title>
 
 
     </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
@@ -20,7 +22,20 @@
                 <ion-item>
 
                     <ion-label position="floating">Categoria Filter</ion-label>
-                    <ion-input [(ngModel)]="categoria" type="text" placeholder="entre com a categoria"></ion-input>
+                    <ion-input [(ngModel)]="produto.categoria" type="text" placeholder="entre com a categoria"></ion-input>
+
+                </ion-item>
+
+            </ion-col>
+        </ion-row>
+
+        <!-- filtra pelo nome do produto -->
+        <ion-row>
+            <ion-col>
+                <ion-item>
+
+                    <ion-label position="floating">Nome Produto Filter</ion-label>
+                    <ion-input [(ngModel)]="produto.nome_produto" type="text" placeholder="entre com a categoria"></ion-input>
 
                 </ion-item>
 
