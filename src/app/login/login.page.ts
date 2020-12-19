@@ -28,13 +28,17 @@ export class LoginPage implements OnInit, OnDestroy {
 
   ngOnInit() { }
 
+  ionViewWillLeave() {
+    if(this.login) {
+      this.login.email_funcionario = null;
+      this.login.senha_funcionario = null;
+    };
+  }
   ngOnDestroy() {
-    this.login = null;
   }
 
   // manipulando o menu lateral
   ionViewWillEnter() {
-    
     this._menu.swipeGesture(false);
 
   }
